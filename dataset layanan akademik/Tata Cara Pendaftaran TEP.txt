@@ -1,0 +1,20 @@
+Tata Cara Pendaftaran TEP
+
+1.Pembayaran Biaya Tes
+Lakukan pembayaran TEP melalui BANK BTN atau ATM BTN untuk mendapatkan Nomor Token.
+
+2.Login/Registrasi
+-Login melalui http://sso.unesa.ac.id > Akademik > SIMTEP (khusus warga Unesa).
+-Jika belum memiliki akun, klik Register untuk mendaftar.
+
+3.Upload Foto
+-Pastikan mengunggah foto sebelum melanjutkan pendaftaran.
+-Pilih Sesi dan Tanggal Tes.
+
+4.Pilih sesi tes (tersedia sesi 1 dan 2).
+-Masukkan Nomor Token dan verifikasi.
+-Pilih tanggal tes sesuai kuota yang tersedia.
+
+5.Cetak Kartu Peserta
+Setelah selesai, cetak Kartu Peserta TEP sebagai bukti pendaftaran.
+

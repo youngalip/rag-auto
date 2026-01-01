@@ -1,0 +1,11 @@
+TUTORIAL PENGGUNAAN BEBAS LAB UNTUK MAHASISWA
+https://bebaslab.unesa.ac.id/
+
+1. Login SSO Unesa > Akademik > Bebas Lab
+2. Klik Menu Pengajuan
+3. Klik Ajukan
+4. Tunggu Verifikasi dari Teknisi, Kasublab dan kalab
+5. Cek Pengajuan pada Menu 'Status Pengajuan'
+
+Note:
+Mahasiswa dapat klik ajukan bebas lab ketika nilai TA/Skripsi sudah keluar

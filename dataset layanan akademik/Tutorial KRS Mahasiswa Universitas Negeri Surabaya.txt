@@ -1,0 +1,23 @@
+KRS adalah kependekan dari Kartu Rencana Studi yang berisi mata kuliah yang akan kamu ambil di semester depan. Jadi, Kartu Rencana Studi ini merupakan lembaran yang didalamnya terdapat informasi seperti mata kuliah beserta jumlah SKS-nya, mata kuliah wajib, dan mata kuliah pilihan
+
+Langkah Ke 1
+Login SSO https://sso.unesa.ac.id
+
+Lankah Ke 2
+Pilih Akademik dan pilih Sinau Digital unesa
+
+Langka Ke 3
+-Pilih menu Perkuliahan
+-Dan pilih Sub Menu KRS
+
+Langkah Ke 4
+-Klik Jadwal Kuliah
+-Klik Tampilkan Semua
+-Pilih kelas anda
+-Klik tombol ambil untuk menempuh matakuliah pada semester aktif
+
+Langkah Ke 5
+-Untuk melihat daftar matakuliah yang anda tempuh pada semester aktif silahkan tekan "KRS SAYA"
+-Dan untuk cetak KRS silahkan klik tombol "Cetak KRS"
+
+Jangan Lupa diskusikan KRS anda setiap semester dengan Dosen Pendamping Akademik

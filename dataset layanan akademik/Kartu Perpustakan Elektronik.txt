@@ -1,0 +1,6 @@
+Kartu Perpustakan Elektronik
+
+Tata cara masuk perpustakaan Universita Negeri Surabaya:
+1. Klik "Kartu Perpus Elektronik"
+2. Kemudian muncul Kartu perpustakaan
+3. Tunjukkan barcode QR yang ada di kartu perpustakaan

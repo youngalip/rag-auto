@@ -1,0 +1,15 @@
+Persyaratan Mendapatkan SPK (Surat Penetapan Kelulusan)
+
+Mahasiswa yang ingin mengajukan SPK harus memenuhi persyaratan sebagai berikut :
+1. Masih tercatat sebagai mahasiswa aktif.
+2. Telah menyelesaikan skripsi/ta/tesis/disertasi yang dibuktikan dengan lembar pengesahan skripsi/ta/tesis/disertasi.
+3. Memenuhi jumlah sks sesuai buku pedoman akademik sebagai syarat penyelesaian kuliah.
+4. Transkrip yang sudah divalidasi oleh kaprodi.
+5. Melengkapi berkas dokumen pendukung biodata.
+Seperti :
+1. Pengsian Tempat Tanggal Lahir sesuai ijazah terakhir.
+2. Upload bukti ijazah terakhir.
+3. Upload KTP
+4. Upload KK
+6. Unggah Foto Berwarna sesuai ketentuan
+7. Jurnal hasil skripsi/ta/tesis/disertasi sudah diterbitkan dan dibuktikan dengan unggah berkas bukti unggah jurnal dari petugas ejurnal, mengisi link jurnal, dan upload file jurnal.

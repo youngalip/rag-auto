@@ -1,0 +1,51 @@
+                                 TATA CARA BAYAR BIAYA PENDIDIKAN
+                                UNIVERSITAS NEGERI SURABAYA (UNESA)
+                                     MELALUI VIRTUAL ACCOUNT
+
+Mobile Banking BTN
+
+
+1. “Login“ ke m-Banking BTN                                          
+2. Pilih menu Pembayaran 
+3. Pilih Virtual Account
+4. Struk input nomor VA pembayaran
+5. Input PIN m-Banking dan m-token yang dikrimkan melalui sms lalu kirim
+6. Trx Sukses! simpan sebagai bukti pembayaran
+
+ATM BTN
+
+1. Pilih Transaksi Lainnya                       
+2. Pilih Pembayaran                               
+3. Pilih Multipayment
+4. Pilih Virtual Account                                 
+5. Masukkan 17 digit  No Virtual Account                                              
+6. Pastikan Data Sudah Benar,Cetak Resi
+
+Teller BTN
+1. Berikan nomor VA pada teller dari Bank BTN terdekat 
+2. Teller akan menginfokan nominal yang harus dibayar
+3. Serahkan uang pada teller sesuai nominal tagihan
+4. Terima resi pembayaran teller sebagai bukti pembayaran
+
+ATM Bank Lain
+
+1. Pilih Transaksi Lainnya 
+2. Pilih Transfer
+3. Pilih Rek Bank Lain
+4. Masukan Kode Bank BTN (200) diikuti dengan Nomor VA. Contoh :97259031201199999 
+5. Input Jumlah Tagihan kemudian pilih Benar
+6. Pastikan Data yang tertera nama Anda kemudian pilih Ya.Lanjutkan konfirmasi hingga Struk keluar dari mesin ATM
+Mobile Banking Bank Lain
+1.Pilih Menu Transfer
+2.Pilih Rek Bank Lain
+3.Masukan atau Pilih Kode Bank BTN (200) dan input Nomor VA. Contoh :90310YYYYYYYYYYYYYYY
+4.Input Jumlah Tagihan kemudian pilih Benar
+5.Pastikan Data yang tertera adalah  nama Anda kemudian pilih Ya.Struk ditampilkan pada mobile banking
+
+    Kantor Cabang Bank BTN Surabaya
+    JJl. Pemuda No.50, Surabaya 60271
+
+    (031) 5353513 - 19
+
+    kc.surabaya@btn.co.id
+

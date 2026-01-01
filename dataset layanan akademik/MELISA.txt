@@ -1,0 +1,25 @@
+MELISA (Sistem Informasi Merdeka Belajar)
+
+Didalam Melisa terdapat:
+-Dashboard
+Daftar kegiatan yang diikuti merdeka belajar 
+
+Jika ingin mengambil Pertukaran Mahasiswa,klik "Pertukaran Mahasiswa".
+
+Jika klik "SIPINTAR" maka akan muncul :
+Silahkan Memilih Bentuk Kegiatan Pembelajaran (BKP)
+1.Magang
+2.Penelitian/Riset
+3. Studi Independen
+4. Final Project
+5. Asisten Mengajar
+6. Proyek Kemanusiaan
+7. Membangun Desa/KKNT
+8. Mengajar di satuan pendidikan (PLP)
+9. Wirausaha
+10. Bela Negara
+
+-Simkerma
+Dokumen Kerjasama di UNESA 
+
+Data dokumen kerjasama yang diisi oleh mahasiswa akan divalidasi oleh universitas agar dapat digunakan sebagai referensi MoU pada isian kegiatan MBKM.

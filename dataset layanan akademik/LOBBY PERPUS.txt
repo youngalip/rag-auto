@@ -1,0 +1,6 @@
+LOBBY PERPUS
+
+Terdapat:
+1. Orientasi perpustakaan
+2. Data peminjaman Buku
+3. Data pengembalian Buku

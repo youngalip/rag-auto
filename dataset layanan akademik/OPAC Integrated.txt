@@ -1,0 +1,7 @@
+OPAC Integrated
+
+Tata cara mencari Online Public Access Catalogue Universitas Negeri Surabaya:
+1. Klik "OPAC Integrated"
+2. Kemudian muncul kolom pencarian 
+3. Jika ingin mencari ketik keyword:Title, Author, Publisher
+3. Klik Search atau Advance search

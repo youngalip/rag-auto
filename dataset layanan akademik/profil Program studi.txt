@@ -1,0 +1,200 @@
+Profil Prodi & Kurikulum
+
+ 
+Bahasa dan Seni
+S1 Desain Komunikasi Visual 
+S1 Musik 
+S1 Pendidikan Bahasa Dan Sastra Indonesia 
+S1 Pendidikan Bahasa Dan Sastra Jawa 
+S1 Pendidikan Bahasa Inggris 
+S1 Pendidikan Bahasa Jepang 
+S1 Pendidikan Bahasa Jerman 
+S1 Pendidikan Bahasa Mandarin 
+S1 Pendidikan Seni Drama, Tari Dan Musik 
+S1 Pendidikan Seni Rupa 
+S1 Sastra Indonesia 
+S1 Sastra Inggris 
+S1 Sastra Jerman 
+S1 Seni Musik 
+S1 Seni Rupa Murni 
+S2 Pendidikan Bahasa  dan Sastra 
+S2 Pendidikan Bahasa Indonesia 
+S2 Pendidikan Bahasa Inggris 
+S2 Pendidikan Seni Budaya 
+S3 Pendidikan Bahasa dan Sastra 
+S3 Pendidikan Seni 
+ 
+ 
+Ekonomika dan Bisnis
+S1 Akuntansi 
+S1 Bisnis Digital 
+S1 Ekonomi 
+S1 Ekonomi Islam 
+S1 Manajemen 
+S1 Pendidikan Administrasi Perkantoran 
+S1 Pendidikan Akuntansi 
+S1 Pendidikan Bisnis 
+S1 Pendidikan Ekonomi 
+S1 Pendidikan Tata Niaga 
+S2 Akuntansi 
+S2 Manajemen 
+S2 Pendidikan Ekonomi 
+S2 Perekonomian Islam dan Industri Halal 
+S3 Manajemen 
+S3 Pendidikan Ekonomi 
+ 
+ 
+Hukum
+S1 Ilmu Hukum 
+S2 Hukum 
+ 
+ 
+Ilmu Keolahragaan dan Kesehatan
+S1 Gizi 
+S1 Ilmu Keolahragaan 
+S1 Manajemen Olahraga 
+S1 Masase 
+S1 Pendidikan Jasmani, Kesehatan & Rekreasi 
+S1 Pendidikan Kepelatihan Olahraga 
+S2 Ilmu Keolahragaan 
+S2 Kepelatihan Olahraga 
+S2 Manajemen Olahraga 
+S2 Pendidikan Olahraga 
+S3 Ilmu Keolahragaan 
+S3 Pendidikan Jasmani 
+ 
+ 
+Ilmu Pendidikan
+S1 Bimbingan Dan Konseling 
+S1 Manajemen Pendidikan 
+S1 Pendidikan Guru Pendidikan Anak Usia Dini 
+S1 Pendidikan Guru Sekolah Dasar 
+S1 Pendidikan Luar Biasa 
+S1 Pendidikan Luar Sekolah 
+S1 Teknologi Pendidikan 
+S2 Bimbingan Dan Konseling 
+S2 Manajemen Pendidikan 
+S2 Pendidikan Anak Usia Dini 
+S2 Pendidikan Dasar 
+S2 Pendidikan Luar Biasa 
+S2 Pendidikan Luar Sekolah 
+S2 PJJ Teknologi Pendidikan 
+S2 Teknologi Pendidikan 
+S3 Bimbingan Konseling 
+S3 Ilmu Pendidikan 
+S3 Manajemen Pendidikan 
+S3 Pendidikan Anak Usia Dini 
+S3 Pendidikan Dasar 
+S3 Pendidikan Inklusi 
+S3 PJJ Teknologi Pendidikan 
+S3 Teknologi Pendidikan 
+ 
+ 
+Ilmu Sosial dan Politik
+S1 Hubungan Internasional 
+S1 Ilmu Administrasi Negara 
+S1 Ilmu Komunikasi 
+S1 Ilmu Politik 
+S1 Pendidikan Geografi 
+S1 Pendidikan IPS 
+S1 Pendidikan Pancasila Dan Kewarganegaraan 
+S1 Pendidikan Sejarah 
+S1 Sosiologi 
+S2 Administrasi Publik 
+S2 Pendidikan Geografi 
+S2 Pendidikan IPS 
+S2 Pendidikan Pancasila dan Kewarganegaraan 
+S2 Sosiologi 
+S3 Pendidikan Ilmu Pengetahuan Sosial 
+ 
+ 
+Matematika dan Ilmu Pengetahuan Alam
+S1 Biologi 
+S1 Fisika 
+S1 Kimia 
+S1 Matematika 
+S1 Pendidikan Biologi 
+S1 Pendidikan Fisika 
+S1 Pendidikan Ilmu Pengetahuan Alam 
+S1 Pendidikan Kimia 
+S1 Pendidikan Matematika 
+S1 Pendidikan Sains 
+S1 Sains Aktuaria 
+S1 Sains Data 
+S2 Fisika 
+S2 Kimia 
+S2 Pendidikan Biologi 
+S2 Pendidikan Fisika 
+S2 Pendidikan Matematika 
+S2 Pendidikan Sains 
+S3 Pendidikan Matematika 
+S3 Pendidikan Sains 
+ 
+ 
+Psikologi
+S1 Psikologi 
+S2 Psikologi 
+ 
+ 
+Teknik
+S1 Pendidikan Kesejahteraan Keluarga 
+S1 Pendidikan Tata Boga 
+S1 Pendidikan Tata Busana 
+S1 Pendidikan Tata Rias 
+S1 Pendidikan Teknik Bangunan 
+S1 Pendidikan Teknik Elektro 
+S1 Pendidikan Teknik Mesin 
+S1 Pendidikan Teknologi Informasi 
+S1 Perencanaan Wilayah dan Kota 
+S1 Sistem Informasi 
+S1 Teknik Elektro 
+S1 Teknik Informatika 
+S1 Teknik Mesin 
+S1 Teknik Sipil 
+S2 Informatika 
+S2 Pendidikan Teknologi Informasi 
+S2 Teknik Elektro 
+ 
+ 
+Vokasi
+D4 Administrasi Negara 
+D4 Desain Grafis 
+D4 Kepelatihan Olahraga 
+D4 Manajemen Informatika 
+D4 Tata Boga 
+D4 Tata Busana 
+D4 Teknik Listrik 
+D4 Teknik Mesin 
+D4 Teknik Sipil 
+D4 Teknologi Rekayasa Otomotif 
+D4 Transportasi 
+ 
+ 
+Kedokteran
+S1 Fisioterapi 
+S1 Kebidanan 
+S1 Kedokteran 
+S1 Keperawatan 
+ 
+ 
+Sekolah Pascasarjana
+S2 Pendidikan Teknologi Dan Kejuruan 
+S3 Pendidikan Vokasi 
+S3 Penelitian dan Evaluasi Pendidikan 
+ 
+ 
+PSDKU
+S1 Ilmu Hukum (Kampus Kabupaten Magetan) 
+S1 Ilmu Komunikasi (Kampus Kabupaten Magetan) 
+S1 Informatika (Kampus Kabupaten Magetan) 
+S1 Manajemen (Kampus Kabupaten Magetan) 
+S1 Pendidikan Guru Sekolah Dasar (Kampus Kabupaten Magetan) 
+S1 Pendidikan Jasmani, Kesehatan, dan Rekreasi (Kampus Kabupaten Magetan) 
+S1 Pendidikan Matematika (Kampus Kabupaten Magetan) 
+S1 Pendidikan Tata Rias (Kampus Kabupaten Magetan) 
+S1 Sastra Inggris (Kampus Kabupaten Magetan) 
+ 
+
+
+
+
