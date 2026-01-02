@@ -8,21 +8,21 @@ from sklearn.model_selection import KFold
 from collections import Counter
 import numpy as np
 
-# ===== IMPROVED MODEL ARCHITECTURE =====
+# =====================================================
+# IMPROVED SEQ2SEQ MODEL FOR RAG
+# =====================================================
+
 class ImprovedSeq2SeqRAG(nn.Module):
-    def __init__(self, vocab_size, embed_dim=300, hidden_dim=600, dropout=0.25):
-        """
-        FIXED: Larger model for better generation
-        """
+    def __init__(self, vocab_size, embed_dim=256, hidden_dim=512, dropout=0.3):
         super().__init__()
         self.embed = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
         self.dropout = nn.Dropout(dropout)
         
-        # Encoder - Increased capacity
+        # Encoder - bidirectional LSTM
         self.encoder = nn.LSTM(
             embed_dim, 
             hidden_dim,
-            num_layers=3,  # FIXED: 2 → 3 layers
+            num_layers=2,
             batch_first=True,
             bidirectional=True,
             dropout=dropout
@@ -32,7 +32,7 @@ class ImprovedSeq2SeqRAG(nn.Module):
         self.decoder = nn.LSTM(
             embed_dim, 
             hidden_dim * 2,
-            num_layers=3,  # FIXED: 2 → 3 layers
+            num_layers=2,
             batch_first=True,
             dropout=dropout
         )
@@ -40,11 +40,15 @@ class ImprovedSeq2SeqRAG(nn.Module):
         self.fc = nn.Linear(hidden_dim * 2, vocab_size)
 
     def _combine_bi_hidden(self, h, c):
+        """
+        Convert bidirectional encoder hidden to decoder hidden
+        """
         num_layers = self.encoder.num_layers
         num_directions = 2 if self.encoder.bidirectional else 1
         H = h.size(2)
         B = h.size(1)
 
+        # Reshape to (num_layers, num_directions, B, H)
         h_resh = h.view(num_layers, num_directions, B, H)
         c_resh = c.view(num_layers, num_directions, B, H)
 
@@ -52,45 +56,53 @@ class ImprovedSeq2SeqRAG(nn.Module):
             h_cat = h_resh[:,0]
             c_cat = c_resh[:,0]
         else:
+            # Concat forward & backward
             h_cat = torch.cat((h_resh[:,0], h_resh[:,1]), dim=2)
             c_cat = torch.cat((c_resh[:,0], c_resh[:,1]), dim=2)
 
         return h_cat.contiguous(), c_cat.contiguous()
         
     def forward(self, input_seq, target_seq):
+        """Training forward pass"""
+        # Encode input (question + context)
         emb_input = self.dropout(self.embed(input_seq))
         _, (h, c) = self.encoder(emb_input)
         
+        # Combine bidirectional hidden
         h, c = self._combine_bi_hidden(h, c)
         
+        # Decode
         emb_target = self.dropout(self.embed(target_seq[:, :-1]))
         out, _ = self.decoder(emb_target, (h, c))
         
         return self.fc(out)
     
     def encode(self, input_seq):
+        """For inference"""
         emb_input = self.embed(input_seq)
         _, (h, c) = self.encoder(emb_input)
         h, c = self._combine_bi_hidden(h, c)
         return h, c
     
     def decode_step(self, x, h, c):
+        """Single decoding step for inference"""
         emb = self.embed(x)
         out, (h, c) = self.decoder(emb, (h, c))
         logits = self.fc(out)
         return logits, h, c
 
-# ===== RAG DATASET =====
+# =====================================================
+# RAG DATASET
+# =====================================================
+
 class RAGDataset(Dataset):
-    def __init__(self, data, vocab=None, max_len_input=250, max_len_output=200):
-        """
-        FIXED: Longer sequences for better answers
-        """
+    def __init__(self, data, vocab=None, max_len_input=200, max_len_output=150):
         self.data = data
-        self.max_len_input = max_len_input  # FIXED: 200 → 250
-        self.max_len_output = max_len_output  # FIXED: 150 → 200
+        self.max_len_input = max_len_input
+        self.max_len_output = max_len_output
         
         if vocab is None:
+            # Build vocabulary
             all_text = []
             for d in self.data:
                 all_text.append(d["question"] + " " + d["context"] + " " + d["answer"])
@@ -106,9 +118,9 @@ class RAGDataset(Dataset):
                 "<sep>": 4
             }
             
-            # FIXED: Lower min frequency for richer vocabulary
+            # Keep words with min frequency
             for w, count in counter.items():
-                if count >= 1 and w not in self.word2idx:  # FIXED: 2 → 1
+                if count >= 2 and w not in self.word2idx:
                     self.word2idx[w] = len(self.word2idx)
             
             self.idx2word = {i: w for w, i in self.word2idx.items()}
@@ -122,6 +134,7 @@ class RAGDataset(Dataset):
         if add_special:
             ids = [self.word2idx["<sos>"]] + ids + [self.word2idx["<eos>"]]
         
+        # Truncate and pad
         ids = ids[:max_len]
         ids += [self.word2idx["<pad>"]] * (max_len - len(ids))
         return torch.tensor(ids)
@@ -132,7 +145,10 @@ class RAGDataset(Dataset):
     def __getitem__(self, idx):
         item = self.data[idx]
         
+        # Input: question <sep> context
         input_text = f"{item['question']} <sep> {item['context']}"
+        
+        # Output: answer
         output_text = item['answer']
         
         return (
@@ -140,31 +156,41 @@ class RAGDataset(Dataset):
             self.encode(output_text, self.max_len_output, add_special=True)
         )
 
-# ===== K-FOLD TRAINING =====
+# =====================================================
+# K-FOLD TRAINING
+# =====================================================
+
 def train_kfold_rag(
     data_file="rag_training_data.json",
     k=5, 
-    epochs=20,  # FIXED: 15 → 20 epochs
+    epochs=15,
     batch_size=8,
-    learning_rate=0.0008,  # FIXED: Lower LR for stability
+    learning_rate=0.001,
     device=None
 ):
-    """
-    FIXED: Better training strategy
-    """
-    print("=" * 60)
+    """K-Fold training for RAG model"""
+    print("="*60)
     print("IMPROVED RAG MODEL TRAINING")
-    print("=" * 60)
+    print("="*60)
     
+    # Load data
     with open(data_file, "r", encoding="utf-8") as f:
         all_data = json.load(f)
     
     print(f"Total training samples: {len(all_data)}")
     
+    if len(all_data) < 200:
+        print(f"\n⚠️ WARNING: Only {len(all_data)} training samples")
+        print("   Recommended minimum: 500+ samples")
+        print("   Training may result in poor performance")
+        print("   Consider adding more documents or manual Q&A pairs")
+    
+    # Device
     if device is None:
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
     
+    # K-Fold
     kf = KFold(n_splits=k, shuffle=True, random_state=42)
     
     best_loss = float("inf")
@@ -176,30 +202,36 @@ def train_kfold_rag(
         print(f"FOLD {fold + 1}/{k}")
         print('='*60)
         
+        # Split data
         train_data = [all_data[i] for i in train_idx]
         val_data = [all_data[i] for i in val_idx]
         
         print(f"Train samples: {len(train_data)}")
         print(f"Val samples: {len(val_data)}")
         
+        # Create datasets
         train_ds = RAGDataset(train_data)
         val_ds = RAGDataset(val_data, vocab=(train_ds.word2idx, train_ds.idx2word))
         
         print(f"Vocabulary size: {len(train_ds.word2idx)}")
         
+        # Data loaders
         train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True)
         val_loader = DataLoader(val_ds, batch_size=batch_size)
         
-        # FIXED: Larger model
+        # Model
         model = ImprovedSeq2SeqRAG(len(train_ds.word2idx)).to(device)
         
+        # Optimizer with scheduler
         optimizer = optim.Adam(model.parameters(), lr=learning_rate)
         scheduler = optim.lr_scheduler.ReduceLROnPlateau(
-            optimizer, mode='min', factor=0.5, patience=3,  # FIXED: More patience
+            optimizer, mode='min', factor=0.5, patience=2
         )
         
+        # Loss
         criterion = nn.CrossEntropyLoss(ignore_index=train_ds.word2idx["<pad>"])
         
+        # Training
         epoch_train_losses = []
         epoch_val_losses = []
         
@@ -221,11 +253,14 @@ def train_kfold_rag(
                 )
                 
                 loss.backward()
+                
+                # Gradient clipping
                 torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+                
                 optimizer.step()
                 total_train_loss += loss.item()
                 
-                if (batch_idx + 1) % 50 == 0:
+                if (batch_idx + 1) % 10 == 0:
                     print(f"  Batch {batch_idx+1}/{len(train_loader)}, Loss: {loss.item():.4f}")
             
             avg_train_loss = total_train_loss / len(train_loader)
@@ -255,6 +290,7 @@ def train_kfold_rag(
             print(f"  Train Loss: {avg_train_loss:.4f}")
             print(f"  Val Loss: {avg_val_loss:.4f}")
             
+            # Scheduler step
             scheduler.step(avg_val_loss)
         
         # Save best model
@@ -304,7 +340,7 @@ if __name__ == "__main__":
     train_kfold_rag(
         data_file="rag_training_data.json",
         k=5,
-        epochs=20,
+        epochs=15,
         batch_size=8,
-        learning_rate=0.0008
+        learning_rate=0.001
     )

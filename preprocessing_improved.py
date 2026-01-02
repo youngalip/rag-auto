@@ -18,91 +18,127 @@ stemmer = stemmer_factory.create_stemmer()
 stopword_factory = StopWordRemoverFactory()
 stopword_remover = stopword_factory.create_stop_word_remover()
 
-# ===== TEXT CLEANING (LESS AGGRESSIVE) =====
+# ===== TEXT CLEANING (PRESERVE INFORMATION) =====
 def clean_text(text, keep_stopwords=True):
     """
-    FIXED: Less aggressive cleaning to preserve information
+    Clean text while preserving important information
     """
     text = text.lower()
     
-    # Remove URLs and emails only
+    # Remove URLs and emails
     text = re.sub(r'http\S+|www\S+', '', text)
     text = re.sub(r'\S+@\S+', '', text)
     
-    # Keep most punctuation for sentence structure
+    # Keep punctuation for sentence structure
     text = re.sub(r'[^\w\s.,!?-]', ' ', text)
     
     # Remove extra whitespace
     text = re.sub(r'\s+', ' ', text)
     
+    # Keep stopwords for natural language
+    # (Don't remove - they're important for context!)
+    
     return text.strip()
 
-# ===== SMART CHUNKING =====
-def smart_chunk(text, max_chunk_size=200):  # Increased from 150
+# ===== SMART CHUNKING WITH OVERLAP =====
+def smart_chunk(text, max_chunk_size=150, overlap=30):
     """
-    FIXED: Larger chunks for better context
+    Smart sentence-aware chunking with overlap
+    
+    Args:
+        text: Text to chunk
+        max_chunk_size: Maximum words per chunk
+        overlap: Overlapping words between chunks
     """
-    sentences = re.split(r"[.!?]+", text)
+    # Split into sentences
+    sentences = re.split(r'[.!?]+', text)
     sentences = [s.strip() for s in sentences if s.strip()]
-
+    
+    if not sentences:
+        return [text] if text.strip() else []
+    
     chunks = []
     current_chunk = []
     current_length = 0
-
+    
     for sent in sentences:
-        sent_len = len(word_tokenize(sent))
-
-        if current_length + sent_len <= max_chunk_size:
+        sent_words = len(word_tokenize(sent))
+        
+        if current_length + sent_words <= max_chunk_size:
             current_chunk.append(sent)
-            current_length += sent_len
+            current_length += sent_words
         else:
             if current_chunk:
-                chunks.append(" ".join(current_chunk))
-            current_chunk = [sent]
-            current_length = sent_len
-
+                # Save current chunk
+                chunk_text = " . ".join(current_chunk) + " ."
+                chunks.append(chunk_text)
+                
+                # Start new chunk with overlap
+                if overlap > 0 and len(current_chunk) > 1:
+                    # Keep last sentence for overlap
+                    current_chunk = [current_chunk[-1], sent]
+                    current_length = len(word_tokenize(current_chunk[-1])) + sent_words
+                else:
+                    current_chunk = [sent]
+                    current_length = sent_words
+            else:
+                current_chunk = [sent]
+                current_length = sent_words
+    
+    # Add remaining
     if current_chunk:
-        chunks.append(" ".join(current_chunk))
-
+        chunk_text = " . ".join(current_chunk) + " ."
+        chunks.append(chunk_text)
+    
     return chunks if chunks else [text]
 
 # ===== MAIN PREPROCESSING =====
 def preprocess_improved(
-    input_file="extracted.json",
+    input_file="labeled.json",
     output_file="preprocessed.json",
-    max_chunk_size=200
+    max_chunk_size=150,
+    overlap=30
 ):
     """
-    FIXED: Improved preprocessing with better labeling
+    Improved preprocessing with smart chunking
     """
+    print("="*60)
+    print("IMPROVED PREPROCESSING")
+    print("="*60)
+    
     with open(input_file, "r", encoding="utf-8") as f:
         data = json.load(f)
-
+    
+    print(f"Processing {len(data)} documents...")
+    
     processed_data = []
     idx = 0
-
+    
     stats = {
         "total_items": len(data),
         "total_chunks": 0,
         "multi_chunk_items": 0,
         "label_distribution": {}
     }
-
+    
     for item in data:
         filename = clean_text(item.get("filename", "unknown"), keep_stopwords=True)
         text = clean_text(item["text"], keep_stopwords=True)
-        
-        # FIXED: Improved labeling
         label = item.get("label", "lainnya")
-
-        chunks = smart_chunk(text, max_chunk_size=max_chunk_size)
-
+        
+        # Skip if too short
+        if len(text) < 20:
+            continue
+        
+        # Chunk text
+        chunks = smart_chunk(text, max_chunk_size=max_chunk_size, overlap=overlap)
+        
         if len(chunks) > 1:
             stats["multi_chunk_items"] += 1
-
+        
         stats["total_chunks"] += len(chunks)
-        stats["label_distribution"][label] = stats["label_distribution"].get(label, 0) + 1
-
+        stats["label_distribution"][label] = stats["label_distribution"].get(label, 0) + len(chunks)
+        
         for i, chunk in enumerate(chunks):
             processed_data.append({
                 "id": idx,
@@ -113,29 +149,34 @@ def preprocess_improved(
                 "label": label
             })
             idx += 1
-
+    
     # Save output
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(processed_data, f, indent=2, ensure_ascii=False)
-
+    
     # Stats
-    print("=" * 60)
+    print("\n" + "="*60)
     print("PREPROCESSING COMPLETED")
-    print("=" * 60)
+    print("="*60)
     print(f"Total original items     : {stats['total_items']}")
     print(f"Items with multi chunks  : {stats['multi_chunk_items']} "
           f"({stats['multi_chunk_items']/stats['total_items']*100:.1f}%)")
     print(f"Total chunks generated   : {stats['total_chunks']}")
     print(f"Average chunks per item  : {stats['total_chunks']/stats['total_items']:.2f}")
+    
     print(f"\nLabel Distribution:")
     for label, count in sorted(stats["label_distribution"].items()):
         print(f"  {label:30s}: {count:4d} ({count/stats['total_chunks']*100:.1f}%)")
-    print(f"Output saved to          : {output_file}")
-    print("=" * 60)
+    
+    print(f"\nOutput saved to: {output_file}")
+    print("="*60)
+    
+    return processed_data
 
 if __name__ == "__main__":
     preprocess_improved(
-        input_file="labeled.json",  # FIXED: Input from labeling.py
+        input_file="labeled.json",
         output_file="preprocessed.json",
-        max_chunk_size=200
+        max_chunk_size=150,
+        overlap=30
     )

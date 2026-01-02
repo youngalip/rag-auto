@@ -1,19 +1,17 @@
 import json
 
-# ===== IMPROVED LEXICON WITH WEIGHTED SCORING =====
+# ===== IMPROVED LEXICON WITH BETTER SCORING =====
 lexicon = {
     "administrasi_lab": {
         "strong": ["bebas lab", "laboratorium", "kalab", "kasublab", "teknisi lab", 
                    "pengajuan lab", "verifikasi lab"],
-        "medium": ["praktikum"],
-        "exclude": ["journal", "jurnal", "publication"],  # Exclude journal-related
+        "medium": ["praktikum", "lab"],
         "weight": 3.5
     },
     "nilai": {
         "strong": ["ipk", "transkrip nilai", "fast track", "spk", "surat penetapan kelulusan",
                    "syarat spk", "persyaratan spk"],
         "medium": ["khs", "kartu hasil studi", "nilai semester"],
-        "exclude": ["journal", "jurnal", "open journal"],
         "weight": 3.0
     },
     "administrasi_akademik": {
@@ -21,14 +19,12 @@ lexicon = {
                    "sinau digital", "sidia", "cuti kuliah", "siakadu", "pengajuan cuti",
                    "registrasi", "daftar ulang", "kepenasihatan"],
         "medium": ["semester", "perkuliahan", "melisa", "siani", "mata kuliah"],
-        "exclude": ["journal", "jurnal", "publication", "research"],
         "weight": 2.8
     },
     "keuangan": {
         "strong": ["ukt", "pembayaran ukt", "angsuran ukt", "penurunan ukt", "pembebasan ukt",
                    "virtual account", "simukt", "btn", "tagihan ukt", "bayar ukt"],
         "medium": ["pembayaran", "biaya kuliah", "beasiswa", "atm", "teller", "transfer"],
-        "exclude": ["journal", "jurnal"],
         "weight": 3.5
     },
     "perpustakaan": {
@@ -36,28 +32,25 @@ lexicon = {
                    "kartu perpustakaan elektronik", "peminjaman buku", "pengembalian buku",
                    "lobby perpus", "orientasi perpustakaan"],
         "medium": ["katalog buku", "koleksi perpustakaan"],
-        "exclude": ["open journal", "journal system", "e-journal", "publication"],
         "weight": 3.0
     },
     "sertifikasi": {
         "strong": ["lsp", "lembaga sertifikasi profesi", "tep", "toefl", "ielts", 
                    "pendaftaran tep", "sertifikat tep", "tes bahasa inggris"],
         "medium": ["sertifikat kompetensi", "ujian bahasa"],
-        "exclude": ["journal", "jurnal"],
         "weight": 3.0
     },
     "sidang_yudisium": {
         "strong": ["yudisium", "wisuda", "pendaftaran yudisium", "syarat yudisium",
                    "kalender akademik", "jadwal yudisium", "toga"],
         "medium": ["kelulusan", "sidang akhir"],
-        "exclude": ["journal", "jurnal"],
         "weight": 3.0
     }
 }
 
 def assign_label(text, filename=""):
     """
-    FIXED: Better labeling with multi-level scoring
+    Improved labeling with multi-level scoring
     """
     text_low = text.lower()
     filename_low = filename.lower()
@@ -94,7 +87,7 @@ def assign_label(text, filename=""):
 
 def labeling(input_file="extracted.json", output_file="labeled.json"):
     """
-    FIXED: Labeling with filename consideration
+    Label documents using lexicon-based approach
     """
     print("=" * 60)
     print("AUTOMATIC LABELING")
