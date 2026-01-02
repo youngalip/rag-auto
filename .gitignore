@@ -5,3 +5,4 @@ training_fold_4.png
 training_fold_5.png
 model_rag_v2.pth
 word2vec.model
+__pycache__/
